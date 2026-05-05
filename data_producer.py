@@ -75,12 +75,16 @@ async def main():
                     }
                 }
             }))
-            for j in range(len(TEXTS_TO_SPEAK) // len(VOICES_NAMES)):
-                speed = SPEEDS_TO_SPEAK[(j * len(VOICES_NAMES) + i) % len(SPEEDS_TO_SPEAK)]
-                phrase = TEXTS_TO_SPEAK[j * len(VOICES_NAMES) + i]
-                print(f"{j * len(VOICES_NAMES) + i} {speed} {voice}")
-                await get_wav_from_api(voice=voice, speed=speed, phrase=phrase, i=j * len(VOICES_NAMES) + i, ws=ws)
-                await asyncio.sleep(1) 
+            try:
+                for j in range(209, len(TEXTS_TO_SPEAK) // len(VOICES_NAMES)):
+                    speed = SPEEDS_TO_SPEAK[(j * len(VOICES_NAMES) + i) % len(SPEEDS_TO_SPEAK)]
+                    phrase = TEXTS_TO_SPEAK[j * len(VOICES_NAMES) + i]
+                    print(f"{j * len(VOICES_NAMES) + i} {speed} {voice}")
+                    await get_wav_from_api(voice=voice, speed=speed, phrase=phrase, i=j * len(VOICES_NAMES) + i, ws=ws)
+                    await asyncio.sleep(1)
+            except Exception:
+                await asyncio.sleep(1)
+                break
 
 if __name__ == "__main__":
     asyncio.run(main())
