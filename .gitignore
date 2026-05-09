@@ -1,3 +1,4 @@
 *.pcm
 *.env
+*.pt
 pcm_to_wav.py
