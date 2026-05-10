@@ -3,7 +3,7 @@ from torch.nn import Sequential, Linear, ReLU, CrossEntropyLoss, Conv2d, MaxPool
 from torch.optim import SGD
 from torch.utils.data import TensorDataset, DataLoader
 
-dataset_path = "./data/dataset_sum_norm.pt"
+dataset_path = "./data/dataset.pt"
 
 alpha = 0.01
 batch_size = 32
@@ -20,6 +20,9 @@ indices = torch.randperm(len(y))
 X = torch.tensor(X[indices]).to(device)
 y = torch.tensor(y[indices]).to(device)
 
+X = X.sum(dim=2)     
+
+X = X / (X.max(dim=1, keepdim=True).values + 1e-8)
 
 X_train, X_val = X[:3800], X[3800:]
 y_train, y_val = y[:3800], y[3800:]
