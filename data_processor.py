@@ -45,6 +45,7 @@ def prepare_dataset(
     all_labels = []
 
     mel_transform = torchaudio.transforms.MelSpectrogram(
+        sample_rate=24000,
         n_mels=n_mels
     )
 
