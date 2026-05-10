@@ -1,4 +1,5 @@
 *.pcm
 *.env
 *.pt
+data/_tests/*
 pcm_to_wav.py

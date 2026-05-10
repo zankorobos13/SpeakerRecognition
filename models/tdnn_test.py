@@ -147,3 +147,8 @@ accuracy = correct / total * 100
 
 print()
 print(f"Validation accuracy: {accuracy:.2f}%")
+
+torch.save({
+    "model": model.state_dict(),
+    "optimizer": optimizer.state_dict(),
+}, "tdnn_checkpoint.pt")
